@@ -1395,9 +1395,6 @@ int main() {
 }
 
 
-
-
-
 int longestSubstrDistinctChars (string S)
 {
     // your code here
@@ -1582,6 +1579,745 @@ int main()
     }
 	return 0;
 }
+
+
+// [[Linked List]]
+// Finding middle element in a linked list
+// Reverse a linked list
+// Rotate a Linked List
+// Reverse a Linked List in groups of given size
+// Intersection point in Y shaped linked lists
+// Detect Loop in linked list
+// Remove loop in Linked List
+// n'th node from end of linked list
+// Flattening a Linked List
+// Merge two sorted linked lists
+// Intersection point of two Linked Lists
+// Pairwise swap of a linked list
+// Add two numbers represented by linked lists
+// Check if Linked List is Palindrome
+// Implement Queue using Linked List
+// Implement Stack using Linked List
+// Given a linked list of 0s, 1s and 2s, sort it
+// Delete without head pointer
+
+
+//d6f352d5b3ae2acbe73c65d7191c0b4d__C3
+172.31.38.5
+
+/*Please note that it's Function problem i.e.
+you need to write your solution in the form of Function(s) only.
+Driver Code to call/invoke your function is mentioned above.*/
+
+/* Link list Node 
+struct Node {
+    int data;
+    Node* next;
+}; */
+/* Should return data of middle node. If linked list is empty, then  -1*/
+int getMiddle(Node *head)
+{
+   // Your code here
+   struct Node* slow=head;
+   struct Node* fast=head;
+   
+   struct Node* prev;
+   
+   while(fast && fast->next)
+   {
+       prev=slow;
+       slow=slow->next;
+       fast=fast->next->next;
+   }
+   
+   if(fast!=NULL)
+   {
+       return slow->data;
+   }
+   
+   return slow->data;
+   
+   
+}
+
+/* Linked List Node structure:
+
+struct Node
+{
+    int data;
+    struct Node *next;
+}
+
+*/
+
+class Solution
+{
+    public:
+    //Function to reverse a linked list.
+    struct Node* reverseList(struct Node *head)
+    {
+        // code here
+        // return head of reversed list
+        struct Node* curr,*prev=NULL,*next=NULL;
+        curr=head;
+        
+        while(curr!=NULL){
+            next=curr->next;
+            curr->next=prev;
+            prev=curr;
+            curr=next;
+        }
+        
+        return prev;
+    }
+    
+};
+    
+
+/*
+
+struct Node {
+    int data;
+    struct Node *next;
+    Node(int x) {
+        data = x;
+        next = NULL;
+    }
+};
+
+*/
+
+
+class Solution
+{
+    public:
+    //Function to rotate a linked list.
+    Node* rotate(Node* head, int k)
+    {
+        // Your code here
+        Node* temp=head;
+        Node* prev=NULL;
+        
+        for(int i=0;i<k;i++){
+            prev=temp;
+            temp = temp->next;
+        }
+        
+        if(!temp){
+            return head;
+        }
+        
+        prev->next=NULL;
+        
+        Node* temp1 = temp;
+        
+        while(temp1->next!=NULL){
+            temp1 = temp1->next;
+        }
+        
+        temp1->next = head;
+        
+        return temp;
+        
+    }
+};
+
+/*
+  Reverse a linked list
+  The input list will have at least one element  
+  Return the node which points to the head of the new LinkedList
+  Node is defined as 
+    struct node
+    {
+        int data;
+        struct node* next;
+    
+        node(int x){
+            data = x;
+            next = NULL;
+        }
+    
+    }*head;
+*/
+
+class Solution
+{
+    public:
+    struct node *reverse (struct node *head, int k)
+    { 
+        // Complete this method
+        
+        if(!head){
+            return head;
+        }
+        
+        struct node* current=head;
+        struct node* prev=NULL;
+        struct node* next=NULL;
+        
+        int c=0;
+        
+        while(current!=NULL && c<k){
+            next = current->next;
+            current->next = prev;
+            prev = current;
+            current = next;
+            c++;
+        }
+        
+        if(head){
+            head->next=reverse(next,k);
+        }
+        
+        return prev;
+        
+        
+    }
+};
+
+
+//6d63e3e3efb3bf002b336f592a5412bb__C3
+14.139.82.6
+
+/*Please note that it's Function problem i.e.
+you need to write your solution in the form of Function(s) only.
+Driver Code to call/invoke your function is mentioned above.*/
+
+/* Link list Node 
+struct Node {
+    int data;
+    struct Node* next;
+}; */
+/* Should return data of intersection point of two linked
+   lists head1 and head2.
+   If there is no intersecting point, then return -1. */
+int intersectPoint(Node* head1, Node* head2)
+{
+    // Your Code Here
+    struct Node* current1=head1;
+    struct Node* current2=head2;
+    
+    
+    while(current1!=current2)
+    {
+        current1=current1?current1->next:head2;
+    
+        current2=current2?current2->next:head1;
+    }
+    
+    
+    if(current1)
+        return current1->data;
+        
+    return -1;
+
+    
+}
+
+//373d4f5d3430ea8030c4dbf3b726fede__C3
+14.139.82.6
+
+/*Please note that it's Function problem i.e.
+you need to write your solution in the form of Function(s) only.
+Driver Code to call/invoke your function is mentioned above.*/
+
+/*The structure of linked list is the following
+struct node
+{
+int data;
+node* next;
+};*/
+int detectloop(struct node *list){
+// your code goes here
+
+    struct node * slow=list;
+    struct node * fast=list;
+    
+    
+    while(fast && fast->next)
+    {
+        
+        slow=slow->next;
+        fast=fast->next->next;
+        
+        if(slow==fast)
+            return 1;
+        
+        
+    }
+    
+    return 0;
+}
+
+//388cf951d82754a582fdff71a3b9b93f__C3
+14.139.82.6
+
+/*Please note that it's Function problem i.e.
+you need to write your solution in the form of Function(s) only.
+Driver Code to call/invoke your function is mentioned above.*/
+
+/*The structure of linked list is the following
+struct Node
+{
+int data;
+Node* next; 
+};*/
+/*The function removes the loop from the linked list if present
+You are required to complete this method*/
+void removeTheLoop(Node *node)
+{
+     //Your code here
+     
+    unordered_map<Node*,int>m;
+    
+    
+    struct Node* current=node;
+    struct Node* last;
+    
+    while(current!=NULL)
+    {
+        
+        if(m.find(current)==m.end())
+        {
+            last=current;
+            m[current]++;
+            current=current->next;
+            
+        }
+        else
+        {
+            last->next=NULL;
+            current=current->next;
+        }
+        
+    }     
+     
+}
+
+/* struct Node {
+  int data;
+  struct Node *next;
+  Node(int x) {
+    data = x;
+    next = NULL;
+  }
+};
+*/
+
+//Function to find the data of nth node from the end of a linked list.
+class Solution{
+public:
+    int getNthFromLast(Node *head, int n)
+    {
+           // Your code here
+           
+           Node* one=head;
+           
+           while(n--){
+               
+               if(!one){
+                   return -1;
+               }
+               
+               one = one->next;
+           }
+           
+           Node* two=head;
+           
+           while(one!=NULL){
+               one = one->next;
+               two = two->next;
+           }
+           
+           return two->data;
+    }
+};
+
+
+
+
+/* Node structure  used in the program
+
+struct Node{
+	int data;
+	struct Node * next;
+	struct Node * bottom;
+	
+	Node(int x){
+	    data = x;
+	    next = NULL;
+	    bottom = NULL;
+	}
+	
+};
+*/
+
+/*  Function which returns the  root of 
+    the flattened linked list. */
+    
+Node* flatten_merge(Node* root1,Node* root2){
+    
+    if(!root1){
+        return root2;
+    }
+    
+    if(!root2){
+        return root1;
+    }
+    
+    if(root1->data<root2->data){
+        root1->bottom = flatten_merge(root1->bottom,root2);
+        return root1;
+    }else{
+        root2->bottom = flatten_merge(root1,root2->bottom);
+        return root2;
+    }
+}
+    
+Node *flatten(Node *root)
+{
+   // Your code here
+   
+   if(!root || !root->next){
+       return root;
+   }
+   
+   return flatten_merge(root,flatten(root->next));
+}
+
+
+/* Link list Node
+struct Node {
+  int data;
+  struct Node *next;
+  
+  Node(int x) {
+    data = x;
+    next = NULL;
+  }
+};
+*/
+//Function to merge two sorted linked list.
+Node* sortedMerge(Node* head1, Node* head2)  
+{  
+    // code here
+    if(head1==NULL)
+        return head2;
+    
+    if(head2==NULL)
+        return head1;
+        
+    if(head1->data<head2->data){
+        head1->next=sortedMerge(head1->next,head2);
+        return head1;
+    }else{
+        head2->next=sortedMerge(head1,head2->next);
+        return head2;
+    }
+        
+}  
+
+/* structure of list node:
+
+struct Node
+{
+    int data;
+    Node *next;
+    Node(int val)
+    {
+        data=val;
+        next=NULL;
+    }
+};
+
+*/
+
+class Solution{
+  public:
+    Node* findIntersection(Node* head1, Node* head2)
+    {
+        // code here
+        // return the head of intersection list
+        
+        Node* ans=NULL;
+        Node* cur=ans;
+        unordered_map<int,Node*> ump;
+        
+        while(head2!=NULL){
+            ump[head2->data]=head2;
+            head2=head2->next;
+        }
+        
+        while(head1!=NULL){
+            
+            if(ump[head1->data]!=NULL){
+                // cout<<head1->data<<" "<<endl;;
+                if(ans==NULL){
+                    ans=ump[head1->data];
+                    cur=ans;
+                }else{
+                    
+                    // cout<<"in "<<head1->data<<endl;
+                    
+                    // if(cur!=NULL){
+                                        cur->next=ump[head1->data];
+                    cur=cur->next;
+                    // }
+
+                }
+                
+            }
+            
+            head1=head1->next;
+        }
+        
+        if(cur)
+            cur->next=NULL;
+            
+        return ans;
+    }
+};
+
+
+/*
+  Pairwise swap a linked list
+  The input list will have at least one element
+  node is defined as
+
+struct Node
+{
+    int data;
+    struct Node* next;
+
+    Node(int x){
+        data = x;
+        next = NULL;
+    }
+
+}*head;
+*/
+class Solution
+{
+    public:
+    Node* pairWiseSwap(struct Node* head) 
+    {
+        // The task is to complete this method
+        
+        if(!head || !head->next){
+            return head;
+        }
+        
+        Node* temp = head->next;
+        
+        head->next = pairWiseSwap(temp->next);
+        
+        temp->next = head;
+        
+        return temp;
+        
+    }
+};
+
+//c87ea5a50ba82c682f33034954a6a356__C3
+14.139.82.6
+
+/*Please note that it's Function problem i.e.
+you need to write your solution in the form of Function(s) only.
+Driver Code to call/invoke your function is mentioned above.*/
+
+/*struct Node
+{
+    int data;
+   Node* next;
+}; */
+//write a function returns the resultant linked list
+
+struct Node* reverse(struct Node* head)
+{
+    
+    struct Node* prev=NULL;
+    struct Node* current=head;
+    struct Node* next;
+    
+    
+    while(current!=NULL)
+    {
+        struct Node* next=current->next;
+        current->next=prev;
+        prev=current;
+        current=next;
+    }
+    
+    return prev;
+}
+
+
+void print(struct Node* head)
+{
+    
+  
+    struct Node* current=head;
+    
+    
+    while(current!=NULL)
+    {
+        cout<<current->data<<"  ";
+        current=current->next;
+    }
+    
+    cout<<"\n";
+   
+}
+
+
+Node*  addTwoLists(Node* first, Node* second)
+{
+  // Code here
+  struct Node* current1=first;
+  struct Node* current2=second;
+  
+  
+//   print(current1);
+//   print(current2);
+  
+  int carry=0;
+  struct Node* head=NULL;
+  struct Node* prev=NULL;
+  
+  int val1,val2,t;
+  
+  
+  while(current1 || current2)
+  {
+      
+      val1=current1?current1->data:0;
+      val2=current2?current2->data:0;
+      
+      t=val1+val2+carry;
+      
+      struct Node* temp=newNode(t%10);
+      
+      carry=t/10;
+      
+      if(!prev)
+      {
+          head=temp;
+      }
+      else
+      {
+          prev->next=temp;
+      }
+      
+      
+      prev=temp;
+      
+      current1=current1?current1->next:NULL;
+      current2=current2?current2->next:NULL;
+      
+      
+  }
+  
+  if(carry>0)
+  {
+      struct Node* temp=newNode(carry);
+      
+      prev->next=temp;
+  }
+  
+  return head;
+
+    
+}
+
+/*
+struct Node {
+  int data;
+  struct Node *next;
+  Node(int x) {
+    data = x;
+    next = NULL;
+  }
+};
+*/
+
+class Solution{
+  public:
+    //Function to check whether the list is palindrome.
+ 
+    
+    bool helper(Node *head,Node *&head1){
+        
+        if(!head)
+            return 1;
+            
+            
+        bool r=helper(head->next,head1);
+        
+        if(!r){
+            return 0;
+        }
+        
+        
+        if(head->data==head1->data){
+            head1=head1->next;
+            return 1;
+        }
+        
+        return 0;
+    }
+    
+    
+    bool isPalindrome(Node *head)
+    {
+       Node* head1=head;
+       
+       return helper(head,head1);
+            
+ 
+        
+    }
+};
+
+//4d6cd87bee74ca96645cf14783637e42__C3
+14.139.82.6
+
+/*Please note that it's Function problem i.e.
+you need to write your solution in the form of Function(s) only.
+Driver Code to call/invoke your function is mentioned above.*/
+
+/* Link list node 
+struct Node
+{
+    int data;
+    Node* next;
+}*/
+// This function should delete node from linked list. The function
+// may assume that node exists in linked list and is not last node
+void deleteNode(Node *node)
+{
+   // Your code here
+   struct Node* temp=node->next;
+   
+   node->data=temp->data;
+   node->next=temp->next;
+   
+   delete temp;   
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
